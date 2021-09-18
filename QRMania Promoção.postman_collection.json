@@ -1,0 +1,163 @@
+{
+	"info": {
+		"_postman_id": "0b1e5c8a-5dda-4acc-a9b6-f29e121217c2",
+		"name": "QRMania Promoção",
+		"description": "# QRMania Promoção\n\nAbaixo são apresentadas as documentações para acesso a API do QRMANIA Promoção. \nEndpoint URL: https://api.qrmania.com.br/api/externo\n\n\n# Autenticação\n\nA autenticação para fazer requisições a esta API é com a utilização do token do lojista disponibilizado através do painel web do QRMania.\n\n# Error Codes\n\n**400 – Bad Request**\n\nDados enviados de forma incorreta ou fora do padrão\n\n**401 – Unauthorized**\n\nSem autorização suficiente para acessar o recurso desejado\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PARCEIROS",
+			"item": [
+				{
+					"name": "/parceiro/qrmaniapromocao/listEstabelecimentos/{token_lojista}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/parceiro/qrmaniapromocao/listEstabelecimentos/{{token_lojista}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"parceiro",
+								"qrmaniapromocao",
+								"listEstabelecimentos",
+								"{{token_lojista}}"
+							]
+						},
+						"description": "## Descrição \nEsta rota retorna a lista dos estabelecimentos vinculados ao lojista.\n\n### Query GET:\n- **token_lojista**: Token fornecido pelo estabelecimento para autenticação (Valor\nObrigatório)."
+					},
+					"response": []
+				},
+				{
+					"name": "/parceiro/qrmaniapromocao/gerar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cnpj\": \"\",\n    \"token_lojista\": \"\",\n    \"valor_compra\": \"\",\n    \"cpf_cliente\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/parceiro/qrmaniapromocao/gerar",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"parceiro",
+								"qrmaniapromocao",
+								"gerar"
+							]
+						},
+						"description": "## Descrição \nEsta rota gera o voucher promoção do QRMania baseado no vaor da compra e cnpj do estabelecimento. \n\n## Campos POST:\n- **cnpj**: CNPJ de estabelecimento escolhido em rota anterior. \nVíncula para esse estabelecimento o QRMANIA desconto\nSomente números (Valor Obrigatório)\n\n- **token_lojista**: Token fornecido pelo estabelecimento para Autenticação (Valor\nObrigatório).\n\n- **valor_compra**: Valor de compra para calcular desconto (Valor Obrigatório)\n\n- **cpf_cliente**: CPF cliente que realizou compra. (Valor Opcional)\n\n## Valores Retornados\n\nO campo **codigo** é utilizado para gerar QRCODE que será utilizado na promoção.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "/parceiro/qrmaniapromocao/get/{codigo}/{token_lojista}/{cnpj}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/parceiro/qrmaniapromocao/get/{codigo}/{{token_lojista}}/{{cnpj}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"parceiro",
+								"qrmaniapromocao",
+								"get",
+								"{codigo}",
+								"{{token_lojista}}",
+								"{{cnpj}}"
+							]
+						},
+						"description": "## Descrição \nEsta rota retorna a lista dos estabelecimentos vinculados ao lojista.\n\n### Query GET:\n- **codigo**: Código retornado em rota a qual gera QRCODE (Valor Obrigatório)\n- **token_lojista**: Token fornecido pelo estabelecimento para Autenticação (Valor\nObrigatório);\n- **cnpj**: CNPJ parceiro. (Somente números - Valor Obrigatório)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ESTABELECIMENTOS",
+			"item": [
+				{
+					"name": "/estabelecimento/qrmaniapromocao/get/{codigo}/{token_lojista}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/estabelecimento/qrmaniapromocao/get/{codigo}/{{token_lojista}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"estabelecimento",
+								"qrmaniapromocao",
+								"get",
+								"{codigo}",
+								"{{token_lojista}}"
+							]
+						},
+						"description": "## Descrição \nSolicitação dos dados e descontos do QRMania Promoção.\n\n### Query GET:\n- **codigo**: Código utilizado para gerar QRCODE (Valor Obrigatório).\n- **token_lojista**: Token estabelecimento gerado no painel gerenciador para\nAutenticação (Valor Obrigatório)."
+					},
+					"response": []
+				},
+				{
+					"name": "/estabelecimento/qrmaniapromocao/confirmar/{codigo}/{token_lojista}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/estabelecimento/qrmaniapromocao/confirmar/{codigo}/{{token_lojista}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"estabelecimento",
+								"qrmaniapromocao",
+								"confirmar",
+								"{codigo}",
+								"{{token_lojista}}"
+							]
+						},
+						"description": "## Descrição \nSolicitação para confirmar o uso do QRMania Promoção.\n\n### Query GET:\n- **codigo**: Código retornado no momento que foi gerado o voucher promoção (Valor Obrigatório).\n- **token_lojista**: Token estabelecimento gerado em painel gerenciador para autenticação (Valor Obrigatório)."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

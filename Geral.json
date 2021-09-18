@@ -1,0 +1,393 @@
+{
+	"info": {
+		"_postman_id": "3736903a-5e4c-464e-965b-8b7d539211ee",
+		"name": "QRMania",
+		"description": "# QRMania\n\nAbaixo são apresentadas as documentações para acesso a API do QRMANIA Fidelidade, Integração, Promoção e Raspadinha.\nEndpoint URL: https://api.qrmania.com.br/api/externo\n\n\n# Autenticação\n\nA autenticação para fazer requisições a esta API é com a utilização do token do estabelecimento disponibilizado através do painel web do QRMania.\n\n# Error Codes\n\n**400 – Bad Request**\n\nDados enviados de forma incorreta ou fora do padrão\n\n**401 – Unauthorized**\n\nSem autorização suficiente para acessar o recurso desejado\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Fidelidade",
+			"item": [
+				{
+					"name": "/qrcode-fidelidade/{token}/{token_estabelecimento}/{cnpj}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/qrcode-fidelidade/{token}/{{token_estabelecimento}}/{{cnpj}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"qrcode-fidelidade",
+								"{token}",
+								"{{token_estabelecimento}}",
+								"{{cnpj}}"
+							]
+						},
+						"description": "## Descrição \nEsta rota retorna o voucher fidelidade QRmania através do **token** e o **token do estabelecimento**.\n\n### Query GET:\n**token_estabelecimento**: Token estabelecimento gerado no painel de administração (Valor Obrigatório);\n**cnpj** CNPJ do Estabelecimento (Valor Obrigatório);\n**token** Token QRMANIA Fidelidade (Token presente no qrcode gerado para o cliente - Valor Obrigatório).\n\n"
+					},
+					"response": []
+				},
+				{
+					"name": "/qrcode-fidelidade/used",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token_estabelecimento\": {{token_estabelecimento}},\n    \"cnpj\": {{cnpj}},\n    \"token\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/qrcode-fidelidade/used",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"qrcode-fidelidade",
+								"used"
+							]
+						},
+						"description": "## Descrição \nEsta rota retorna o voucher fidelidade QRmania através do **token** e o **token do estabelecimento**.\n\n### Query POST:\n**token**: Código do QRCODE Fidelidade (Valor Obrigatório);\n**cnpj**: Cnpj Estabelecimento (Valor Obrigatório);\n**token_estabelecimento**: Tokendo  estabelecimento gerado no painel de administração (Valor Obrigatório);\n**cpf_cliente**: CPF do cliente que estará utilizando o ganhe na hora (Valor Obrigatório).\n**usoIdentificador**: Identificador do usuário do estabelecimento que está realizando o processamento. Ex: Bico 01, Caixa 03).\n\n\n"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Integração",
+			"item": [
+				{
+					"name": "/qrmania/get/{codigo}/{token_estabelecimento}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/qrmania/get/{codigo}/{{token_estabelecimento}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"qrmania",
+								"get",
+								"{codigo}",
+								"{{token_estabelecimento}}"
+							]
+						},
+						"description": "## Descrição \nEsta rota retorna o voucher QRmania através do **código** e o **token do estabelecimento**.\n\n### Query GET:\n- **token_estabelecimento**: Token estabelecimento gerado no painel de administração (Valor Obrigatório);\n- **codigo**: Código QRMANIA (Valor Obrigatório).\n"
+					},
+					"response": []
+				},
+				{
+					"name": "/qrmania/confirmar/{codigo}/{valor}/{token_estabelecimento}/{pdv_id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/qrmania/confirmar/{codigo}/{valor}/{{token_estabelecimento}}/{pdv_id}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"qrmania",
+								"confirmar",
+								"{codigo}",
+								"{valor}",
+								"{{token_estabelecimento}}",
+								"{pdv_id}"
+							]
+						},
+						"description": "## Descrição \nConfirma a utilização do voucher QRMania\n\n### Query GET:\n- **codigo**: Código utilizado para gerar QRCODE (Valor Obrigatório);\n- **valor**: Valor da compra (Valor Obrigatório);\n- **token_estabelecimento** Token estabelecimento gerado no painel de administração (Valor Obrigatório);\n- **valor** Valor Utilizado no estabelecimento (Valor Obrigatório);\n- **pdv_id** Identificador do ponto de venda que está recebendo o QRMANIA (Valor Obrigatório)."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Promoção",
+			"item": [
+				{
+					"name": "PARCEIROS",
+					"item": [
+						{
+							"name": "/parceiro/qrmaniapromocao/listEstabelecimentos/{token_lojista}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/parceiro/qrmaniapromocao/listEstabelecimentos/{{token_lojista}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"parceiro",
+										"qrmaniapromocao",
+										"listEstabelecimentos",
+										"{{token_lojista}}"
+									]
+								},
+								"description": "## Descrição \nEsta rota retorna a lista dos estabelecimentos vinculados ao lojista.\n\n### Query GET:\n- **token_lojista**: Token fornecido pelo estabelecimento para autenticação (Valor\nObrigatório)."
+							},
+							"response": []
+						},
+						{
+							"name": "/parceiro/qrmaniapromocao/gerar",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"cnpj\": \"\",\n    \"token_lojista\": \"\",\n    \"valor_compra\": \"\",\n    \"cpf_cliente\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/parceiro/qrmaniapromocao/gerar",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"parceiro",
+										"qrmaniapromocao",
+										"gerar"
+									]
+								},
+								"description": "## Descrição \nEsta rota gera o voucher promoção do QRMania baseado no vaor da compra e cnpj do estabelecimento. \n\n## Campos POST:\n- **cnpj**: CNPJ de estabelecimento escolhido em rota anterior. \nVíncula para esse estabelecimento o QRMANIA desconto\nSomente números (Valor Obrigatório)\n\n- **token_lojista**: Token fornecido pelo estabelecimento para Autenticação (Valor\nObrigatório).\n\n- **valor_compra**: Valor de compra para calcular desconto (Valor Obrigatório)\n\n- **cpf_cliente**: CPF cliente que realizou compra. (Valor Opcional)\n\n## Valores Retornados\n\nO campo **codigo** é utilizado para gerar QRCODE que será utilizado na promoção.\n"
+							},
+							"response": []
+						},
+						{
+							"name": "/parceiro/qrmaniapromocao/get/{codigo}/{token_lojista}/{cnpj}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/parceiro/qrmaniapromocao/get/{codigo}/{{token_lojista}}/{{cnpj}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"parceiro",
+										"qrmaniapromocao",
+										"get",
+										"{codigo}",
+										"{{token_lojista}}",
+										"{{cnpj}}"
+									]
+								},
+								"description": "## Descrição \nEsta rota retorna a lista dos estabelecimentos vinculados ao lojista.\n\n### Query GET:\n- **codigo**: Código retornado em rota a qual gera QRCODE (Valor Obrigatório)\n- **token_lojista**: Token fornecido pelo estabelecimento para Autenticação (Valor\nObrigatório);\n- **cnpj**: CNPJ parceiro. (Somente números - Valor Obrigatório)"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ESTABELECIMENTOS",
+					"item": [
+						{
+							"name": "/estabelecimento/qrmaniapromocao/get/{codigo}/{token_lojista}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/estabelecimento/qrmaniapromocao/get/{codigo}/{{token_lojista}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"estabelecimento",
+										"qrmaniapromocao",
+										"get",
+										"{codigo}",
+										"{{token_lojista}}"
+									]
+								},
+								"description": "## Descrição \nSolicitação dos dados e descontos do QRMania Promoção.\n\n### Query GET:\n- **codigo**: Código utilizado para gerar QRCODE (Valor Obrigatório).\n- **token_lojista**: Token estabelecimento gerado no painel gerenciador para\nAutenticação (Valor Obrigatório)."
+							},
+							"response": []
+						},
+						{
+							"name": "/estabelecimento/qrmaniapromocao/confirmar/{codigo}/{token_lojista}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/estabelecimento/qrmaniapromocao/confirmar/{codigo}/{{token_lojista}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"estabelecimento",
+										"qrmaniapromocao",
+										"confirmar",
+										"{codigo}",
+										"{{token_lojista}}"
+									]
+								},
+								"description": "## Descrição \nSolicitação para confirmar o uso do QRMania Promoção.\n\n### Query GET:\n- **codigo**: Código retornado no momento que foi gerado o voucher promoção (Valor Obrigatório).\n- **token_lojista**: Token estabelecimento gerado em painel gerenciador para autenticação (Valor Obrigatório)."
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Raspadinha",
+			"item": [
+				{
+					"name": "/raspadinhas/{token_estabelecimento}/{cnpj}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/raspadinhas/{{token_estabelecimento}}/{{cnpj}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"raspadinhas",
+								"{{token_estabelecimento}}",
+								"{{cnpj}}"
+							]
+						},
+						"description": "## Descrição \nEsta rota retorna a lista de raspadinhas disponibilizadas pelo estabelecimento.\n\n### Query GET:\n- **token_estabelecimento**: Token estabelecimento gerado no painel de administração (Valor Obrigatório).\n- **cnpj**:CNPJ Estabelecimento (Valor Obrigatório)."
+					},
+					"response": []
+				},
+				{
+					"name": "/raspadinhas/{idRaspadinha}/{token_estabelecimento}/{cnpj}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}} /raspadinhas/{idRaspadinha}/{{token_estabelecimento}}/{{cnpj}}",
+							"host": [
+								"{{url}} "
+							],
+							"path": [
+								"raspadinhas",
+								"{idRaspadinha}",
+								"{{token_estabelecimento}}",
+								"{{cnpj}}"
+							]
+						},
+						"description": "## Descrição \nEsta rota retorna a raspadinha disponibilizadas pelo estabelecimento através do Id.\n\n### Query GET:\n- **token_estabelecimento**: Token estabelecimento gerado no painel de administração (Valor Obrigatório);\n- **cnpj**: CNPJ Estabelecimento (Valor Obrigatório);\n- **idRaspadinha**: Identificador da raspadinha presente na rota anterior (Valor Obrigatório).\n"
+					},
+					"response": []
+				},
+				{
+					"name": "/raspadinhas/atribuir/ticket",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cnpj\": {{cnpj}},\n    \"token_estabelecimento\": {{token_estabelecimento}},\n    \"cpf_cliente\": \"\",\n    \"id_raspadinha\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/raspadinhas/atribuir/ticket",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"raspadinhas",
+								"atribuir",
+								"ticket"
+							]
+						},
+						"description": "## Descrição \nEsta rota atribui um ticket de rapadinha a um CPF do cliente.\n\n### Query POST:\n- **cnpj**: Cnpj do estabelecimento (Valor Obrigatório);\n- **token_estabelecimento**: Token do estabelecimento gerado no painel de administração (Valor Obrigatório);\n- **cpf_cliente** CPF do cliente que estará recebendo um ticket da raspadinha (Valor Obrigatório);\n- **id_raspadinha** Identificador da raspadinha para atribuir um ticket ao cliente (Valor Obrigatório)."
+					},
+					"response": []
+				},
+				{
+					"name": "/raspadinhas/resgatar/ticket",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cnpj\": {{cnpj}},\n    \"token_estabelecimento\": {{token_estabelecimento}},\n    \"cpf_cliente\": \"\",\n    \"token\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/raspadinhas/resgatar/ticket",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"raspadinhas",
+								"resgatar",
+								"ticket"
+							]
+						},
+						"description": "## Descrição \nEsta rota resga o ticket de rapadinha vinculado a um CPF através do código de ticket de raspadinha.\n\n### Query POST:\n- **cnpj**: Cnpj Estabelecimento (Valor Obrigatório);\n- **token_estabelecimento**: Token estabelecimento gerado no painel de administração (Valor Obrigatório);\n- **cpf_cliente**: CPF do cliente que está utilizando o ticket da raspadinha (Valor Obrigatório);\n- **token**: Token gerado no momento da atribuição da raspadinha. (Valor Obrigatório - Também presente no\naplicativo)."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

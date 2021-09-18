@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "74fdf617-c3bf-4337-8c28-a1f7772abcf6",
+		"name": "QRMania Integração",
+		"description": "# QRMania Integração\n\nAbaixo são apresentadas as documentações para acesso a API do QRMANIA. \nEndpoint URL: https://api.qrmania.com.br/api/externo\n\n\n# Autenticação\n\nA autenticação para fazer requisições a esta API é com a utilização do token do estabelecimento disponibilizado através do painel web do QRMania.\n\n# Error Codes\n\n**400 – Bad Request**\n\nDados enviados de forma incorreta ou fora do padrão\n\n**401 – Unauthorized**\n\nSem autorização suficiente para acessar o recurso desejado\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/qrmania/get/{codigo}/{token_estabelecimento}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/qrmania/get/{codigo}/{{token_estabelecimento}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"qrmania",
+						"get",
+						"{codigo}",
+						"{{token_estabelecimento}}"
+					]
+				},
+				"description": "## Descrição \nEsta rota retorna o voucher QRmania através do **código** e o **token do estabelecimento**.\n\n### Query GET:\n- **token_estabelecimento**: Token estabelecimento gerado no painel de administração (Valor Obrigatório);\n- **codigo**: Código QRMANIA (Valor Obrigatório).\n"
+			},
+			"response": []
+		},
+		{
+			"name": "/qrmania/confirmar/{codigo}/{valor}/{token_estabelecimento}/{pdv_id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/qrmania/confirmar/{codigo}/{valor}/{{token_estabelecimento}}/{pdv_id}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"qrmania",
+						"confirmar",
+						"{codigo}",
+						"{valor}",
+						"{{token_estabelecimento}}",
+						"{pdv_id}"
+					]
+				},
+				"description": "## Descrição \nConfirma a utilização do voucher QRMania\n\n### Query GET:\n- **codigo**: Código utilizado para gerar QRCODE (Valor Obrigatório);\n- **valor**: Valor da compra (Valor Obrigatório);\n- **token_estabelecimento** Token estabelecimento gerado no painel de administração (Valor Obrigatório);\n- **valor** Valor Utilizado no estabelecimento (Valor Obrigatório);\n- **pdv_id** Identificador do ponto de venda que está recebendo o QRMANIA (Valor Obrigatório)."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
